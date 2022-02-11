@@ -11,6 +11,16 @@ var usersRouter = require('./routes/users');
 // Initial App
 var app = express();
 
+// Constants App
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://ivamgf:10106088@cluster0-diple.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("db_module_test").collection("users");
+  // perform actions on the collection object
+  client.close();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
